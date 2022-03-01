@@ -1,0 +1,25 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "an advance todo list",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NakRex/todo-list.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "Express",
+    "mongoose",
+    "mongodb"
+  ],
+  "author": "n451m",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NakRex/todo-list/issues"
+  },
+  "homepage": "https://github.com/NakRex/todo-list#readme"
+}
