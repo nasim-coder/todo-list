@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/NakRex/todo-list/issues"
   },
-  "homepage": "https://github.com/NakRex/todo-list#readme"
+  "homepage": "https://github.com/NakRex/todo-list#readme",
+  "dependencies": {
+    "mongoose": "^6.2.4"
+  }
 }
