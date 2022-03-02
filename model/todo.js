@@ -18,6 +18,17 @@ let todoSchema = new mongoose.Schema({
     category: {
         type: String,
         enum: ['work', 'hobby', 'task'],
-        required:true
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
     }
-})
+});
+
+let Todo = mongoose.model('Todo', todoSchema);
+module.exports = Todo;
