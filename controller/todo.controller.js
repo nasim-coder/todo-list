@@ -1,12 +1,20 @@
+exports.register = (req, res) => {
+    
+}
+
+exports.login = (req, res) => {
+    
+}
+
 exports.AddTodo = (req, res) => {
     
 }
 
-exports.changeStatus = (req, res) => {
+exports.updateTitle = (req, res) => {
     
 }
 
-exports.updateTodo = (req, res) => {
+exports.doneTodo = (req, res) => {
     
 }
 
@@ -22,3 +30,10 @@ exports.findAllTodosByCategory = (req, res) => {
     
 }
 
+exports.sortbyCreatedAt = (req, res) => {
+    
+}
+
+exports.gettAllTodosforSingleUser = (req, res) => {
+    
+}
