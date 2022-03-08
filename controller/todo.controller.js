@@ -1,4 +1,8 @@
-const User = require('../model/user')
+const User = require('../model/user');
+const Todo = require('../model/todo');
+const { default: mongoose } = require('mongoose');
+
+
 exports.register = (req, res) => {
     const { name, email,phone, password } = req.body;
     let isAlreadyexist = await User.findOne({ email });
@@ -38,7 +42,21 @@ exports.login = (req, res) => {
 }
 
 exports.AddTodo = (req, res) => {
-    
+    const {title, status, category } = req.body;
+    let uid = req.params.userid;
+    let todo = new Todo({
+        user: uid,
+        title: title,
+        status: status,
+        category: category,
+    });
+    todo.save((err, todo) => {
+        if (err) {
+            return res.status(500).send({success: false, msg: err})
+        } else {
+            return res.status(200).send({success:true, todo})
+        }
+    })
 }
 
 exports.updateTitle = (req, res) => {
