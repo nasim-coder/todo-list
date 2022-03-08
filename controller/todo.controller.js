@@ -73,7 +73,13 @@ exports.updateTitle = (req, res) => {
 }
 
 exports.doneTodo = (req, res) => {
-    
+    let todoid = mongoose.Types.ObjectId(req.params.todoid);
+    try {
+        Todo.updateOne({_id:todoid}, {status: true})
+    } catch (err) {
+        return res.status(500).send({success: false, msg: err})
+    }
+    return res.status(200).send({success: true, msg:"updated successfully"})
 }
 
 exports.deleteTodo = (req, res) => {
