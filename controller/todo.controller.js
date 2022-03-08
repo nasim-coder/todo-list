@@ -83,7 +83,13 @@ exports.doneTodo = (req, res) => {
 }
 
 exports.deleteTodo = (req, res) => {
-    
+    let todoid = mongoose.Types.ObjectId(req.params.todoid);
+    try {
+        Todo.deleteOne({_id: todoid})
+    } catch (err) {
+        return res.status(500).send({success: false,msg: err})
+    }
+     return res.status(200).send({success: true, msg:"deleted successfully"})
 }
 
 exports.findAllTodos = (req, res) => {
