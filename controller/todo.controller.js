@@ -60,6 +60,15 @@ exports.AddTodo = (req, res) => {
 }
 
 exports.updateTitle = (req, res) => {
+    let title = req.body.title;
+    let todoid = mongoose.Types.ObjectId(req.params.todoid);
+    try {
+        Todo.updateOne({ _id: todoid }, { title: title });
+    }
+    catch (err) {
+        return res.status(500).send({ success: false, msg: err });
+    }
+    return res.status(200).send({success: true, msg: "updated successfully"})
     
 }
 
