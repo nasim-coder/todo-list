@@ -102,7 +102,13 @@ exports.findAllTodos = (req, res) => {
 }
 
 exports.findAllTodosByCategory = (req, res) => {
-    
+    let category = req.body.category;
+    let alltodoBycategory = Todo.find({ category: category }, (err) => {
+        if (err) {
+            return res.status(500).send({success: false, msg: err})
+        }
+    })
+    return res.status(200).send({ success: true, alltodoBycategory });
 }
 
 exports.sortbyCreatedAt = (req, res) => {
