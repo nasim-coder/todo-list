@@ -120,3 +120,10 @@ exports.sortbyCreatedAt = (req, res) => {
     return res.status(200).send({success: true, sortedTodobyCreatedAt})
 }
 
+exports.gettAllTodosforSingleUser = (req, res) => {
+    let userid = mongoose.Types.ObjectId(req.params.userid)
+    let singleUserTodos = Todo.find({ user: userid }, (err) => {
+        return res.status(500).send({success: false, msg: err.message})
+    })
+    return res.status(200).send({success: true, singleUserTodos})
+}
