@@ -112,9 +112,11 @@ exports.findAllTodosByCategory = (req, res) => {
 }
 
 exports.sortbyCreatedAt = (req, res) => {
-    
+    let sortedTodobyCreatedAt = Todo.find({}).sort({ createdAt: 1 }, (err) => {
+        if (err) {
+            return res.status(500).send({success: false, msg: err})
+        }
+    })
+    return res.status(200).send({success: true, sortedTodobyCreatedAt})
 }
 
-exports.gettAllTodosforSingleUser = (req, res) => {
-    
-}
