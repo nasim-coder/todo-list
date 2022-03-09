@@ -13,7 +13,7 @@ let todoSchema = new mongoose.Schema({
     status: {
         type: Boolean,
         required: true,
-        default: false
+        default: false,
     },
     category: {
         type: String,

@@ -93,7 +93,12 @@ exports.deleteTodo = (req, res) => {
 }
 
 exports.findAllTodos = (req, res) => {
-    
+    let alltodo = Todo.find({}, (err) => {
+        if (err) {
+            return res.status(500).send({success: false, msg: err})
+        }
+    })
+    return res.status(200).send({success: true, alltodo})
 }
 
 exports.findAllTodosByCategory = (req, res) => {
