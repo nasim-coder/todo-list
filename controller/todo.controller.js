@@ -127,3 +127,19 @@ exports.gettAllTodosforSingleUser = (req, res) => {
     })
     return res.status(200).send({success: true, singleUserTodos})
 }
+
+exports.getNumberofRegisteredUsersforTheDay = (req, res) => {
+    
+}
+
+exports.getActiveUsersForTheDay = (req, res) => {
+    
+}
+
+exports.getActiveUersForTheWeek = (req, res) => {
+    
+}
+
+exports.getActiveUsersForTheMonth = (req, res) => {
+    
+}
