@@ -3,7 +3,7 @@ const Todo = require('../model/todo');
 const { default: mongoose } = require('mongoose');
 
 
-exports.register = (req, res) => {
+exports.register = async (req, res) => {
     const { name, email,phone, password } = req.body;
     let isAlreadyexist = await User.findOne({ email });
     if (!isAlreadyexist) {
@@ -25,7 +25,7 @@ exports.register = (req, res) => {
     }
 }
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
     const { email, password } = req.body;
     if (!(email && password)) {
         res.status(400).send("All input is required");
@@ -41,7 +41,7 @@ exports.login = (req, res) => {
     }
 }
 
-exports.AddTodo = (req, res) => {
+exports.AddTodo = async (req, res) => {
     const {title, status, category } = req.body;
     let uid = req.params.userid;
     let todo = new Todo({
@@ -59,7 +59,7 @@ exports.AddTodo = (req, res) => {
     })
 }
 
-exports.updateTitle = (req, res) => {
+exports.updateTitle = async (req, res) => {
     let title = req.body.title;
     let todoid = mongoose.Types.ObjectId(req.params.todoid);
     try {
@@ -72,7 +72,7 @@ exports.updateTitle = (req, res) => {
     
 }
 
-exports.doneTodo = (req, res) => {
+exports.doneTodo = async (req, res) => {
     let todoid = mongoose.Types.ObjectId(req.params.todoid);
     try {
         Todo.updateMany({ _id: todoid }, {$set:{ status: true, updatedAt: new Date().now }})
@@ -82,7 +82,7 @@ exports.doneTodo = (req, res) => {
     return res.status(200).send({success: true, msg:"done updated successfully"})
 }
 
-exports.deleteTodo = (req, res) => {
+exports.deleteTodo = async (req, res) => {
     let todoid = mongoose.Types.ObjectId(req.params.todoid);
     try {
         Todo.deleteOne({_id: todoid})
@@ -92,7 +92,7 @@ exports.deleteTodo = (req, res) => {
      return res.status(200).send({success: true, msg:"deleted successfully"})
 }
 
-exports.findAllTodos = (req, res) => {
+exports.findAllTodos = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
@@ -105,7 +105,7 @@ exports.findAllTodos = (req, res) => {
     return res.status(200).send({success: true, alltodo})
 }
 
-exports.findAllTodosByCategory = (req, res) => {
+exports.findAllTodosByCategory = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
@@ -118,7 +118,7 @@ exports.findAllTodosByCategory = (req, res) => {
     return res.status(200).send({ success: true, alltodoBycategory });
 }
 
-exports.sortbyCreatedAt = (req, res) => {
+exports.sortbyCreatedAt = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
@@ -130,7 +130,7 @@ exports.sortbyCreatedAt = (req, res) => {
     return res.status(200).send({success: true, sortedTodobyCreatedAt})
 }
 
-exports.gettAllTodosforSingleUser = (req, res) => {
+exports.gettAllTodosforSingleUser = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
@@ -141,7 +141,7 @@ exports.gettAllTodosforSingleUser = (req, res) => {
     return res.status(200).send({success: true, singleUserTodos})
 }
 
-exports.getNumberofRegisteredUsersforTheDay = (req, res) => {
+exports.getNumberofRegisteredUsersforTheDay = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
@@ -151,7 +151,7 @@ exports.getNumberofRegisteredUsersforTheDay = (req, res) => {
     res.status(200).send({success: true, todos})
 }
 
-exports.getActiveUsersForTheDay = (req, res) => {
+exports.getActiveUsersForTheDay = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
@@ -167,7 +167,7 @@ exports.getActiveUsersForTheDay = (req, res) => {
     res.status(200).send({success: true, inaday})
 }
 
-exports.getActiveUersForTheWeek = (req, res) => {
+exports.getActiveUersForTheWeek = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
@@ -183,7 +183,7 @@ exports.getActiveUersForTheWeek = (req, res) => {
     res.status(200).send({success: true, inaweek})
 }
 
-exports.getActiveUsersForTheMonth = (req, res) => {
+exports.getActiveUsersForTheMonth = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
