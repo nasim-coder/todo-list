@@ -28,7 +28,12 @@ let userSchema = new mongoose.Schema({
         required: true,
         minlength: [6, 'password shold be more than 6 character'],
         maxlength:[15, 'password should be less than 15 character']
-    } 
+    },
+    role: {
+        type: String,
+        enum: ["user", "admin"],
+        required: true
+    }
 });
 
 let User = mongoose.model('User', userSchema);
