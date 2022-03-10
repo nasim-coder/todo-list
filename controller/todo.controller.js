@@ -129,7 +129,10 @@ exports.gettAllTodosforSingleUser = (req, res) => {
 }
 
 exports.getNumberofRegisteredUsersforTheDay = (req, res) => {
-    
+   let todos =  Todo.find({ createdAt: { $gte: new Date().now } }, (err) => {
+        return res.status(500).send({success: false, msg: err})
+   })
+    res.status(200).send({success: true, todos})
 }
 
 exports.getActiveUsersForTheDay = (req, res) => {
