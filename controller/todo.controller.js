@@ -93,49 +93,68 @@ exports.deleteTodo = (req, res) => {
 }
 
 exports.findAllTodos = (req, res) => {
+    let perPageDocument = req.params.perPageDocument;
+    let pageNumber = req.params.pageNumber;
+    let pageNu = Math.max(0, pageNumber)
+
     let alltodo = Todo.find({}, (err) => {
         if (err) {
             return res.status(500).send({success: false, msg: err})
         }
-    })
+    }).limit(perPageDocument).skip(perPageDocument*pageNu)
     return res.status(200).send({success: true, alltodo})
 }
 
 exports.findAllTodosByCategory = (req, res) => {
+    let perPageDocument = req.params.perPageDocument;
+    let pageNumber = req.params.pageNumber;
+    let pageNu = Math.max(0, pageNumber)
     let category = req.body.category;
     let alltodoBycategory = Todo.find({ category: category }, (err) => {
         if (err) {
             return res.status(500).send({success: false, msg: err})
         }
-    })
+    }).limit(perPageDocument).skip(perPageDocument*pageNu)
     return res.status(200).send({ success: true, alltodoBycategory });
 }
 
 exports.sortbyCreatedAt = (req, res) => {
+    let perPageDocument = req.params.perPageDocument;
+    let pageNumber = req.params.pageNumber;
+    let pageNu = Math.max(0, pageNumber)
     let sortedTodobyCreatedAt = Todo.find({}).sort({ createdAt: 1 }, (err) => {
         if (err) {
             return res.status(500).send({success: false, msg: err})
         }
-    })
+    }).limit(perPageDocument).skip(perPageDocument*pageNu)
     return res.status(200).send({success: true, sortedTodobyCreatedAt})
 }
 
 exports.gettAllTodosforSingleUser = (req, res) => {
+    let perPageDocument = req.params.perPageDocument;
+    let pageNumber = req.params.pageNumber;
+    let pageNu = Math.max(0, pageNumber)
     let userid = mongoose.Types.ObjectId(req.params.userid)
     let singleUserTodos = Todo.find({ user: userid }, (err) => {
         return res.status(500).send({success: false, msg: err.message})
-    })
+    }).limit(perPageDocument).skip(perPageDocument*pageNu)
     return res.status(200).send({success: true, singleUserTodos})
 }
 
 exports.getNumberofRegisteredUsersforTheDay = (req, res) => {
-   let todos =  User.find({ createdAt: { $gte: new Date().now } }, (err) => {
+    let perPageDocument = req.params.perPageDocument;
+    let pageNumber = req.params.pageNumber;
+    let pageNu = Math.max(0, pageNumber)
+    let todos =  User.find({ createdAt: { $gte: new Date().now } }, (err) => {
         return res.status(500).send({success: false, msg: err})
-   })
+   }).limit(perPageDocument).skip(perPageDocument*pageNu)
     res.status(200).send({success: true, todos})
 }
 
 exports.getActiveUsersForTheDay = (req, res) => {
+    let perPageDocument = req.params.perPageDocument;
+    let pageNumber = req.params.pageNumber;
+    let pageNu = Math.max(0, pageNumber)
     let inaday=Todo.find({
         updatedAt: {
             $gte: new Date().now
@@ -144,11 +163,14 @@ exports.getActiveUsersForTheDay = (req, res) => {
         if (err) {
             res.status.send({success: false, msg: err})
         }
-    });
+    }).limit(perPageDocument).skip(perPageDocument*pageNu);
     res.status(200).send({success: true, inaday})
 }
 
 exports.getActiveUersForTheWeek = (req, res) => {
+    let perPageDocument = req.params.perPageDocument;
+    let pageNumber = req.params.pageNumber;
+    let pageNu = Math.max(0, pageNumber)
     let inaweek=Todo.find({
         updatedAt: {
             $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)
@@ -157,11 +179,14 @@ exports.getActiveUersForTheWeek = (req, res) => {
         if (err) {
             res.status.send({success: false, msg: err})
         }
-    });
+    }).limit(perPageDocument).skip(perPageDocument*pageNu);
     res.status(200).send({success: true, inaweek})
 }
 
 exports.getActiveUsersForTheMonth = (req, res) => {
+    let perPageDocument = req.params.perPageDocument;
+    let pageNumber = req.params.pageNumber;
+    let pageNu = Math.max(0, pageNumber)
     let inamonth=Todo.find({
         updatedAt: {
             $gte: new Date(new Date() - 30 * 60 * 60 * 24 * 1000)
@@ -170,6 +195,6 @@ exports.getActiveUsersForTheMonth = (req, res) => {
         if (err) {
             res.status.send({success: false, msg: err})
         }
-    });
+    }).limit(perPageDocument).skip(perPageDocument*pageNu);;
     res.status(200).send({success: true, inamonth})
 }
