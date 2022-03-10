@@ -75,11 +75,11 @@ exports.updateTitle = (req, res) => {
 exports.doneTodo = (req, res) => {
     let todoid = mongoose.Types.ObjectId(req.params.todoid);
     try {
-        Todo.updateOne({_id:todoid}, {status: true})
+        Todo.updateMany({ _id: todoid }, {$set:{ status: true, updatedAt: new Date().now }})
     } catch (err) {
         return res.status(500).send({success: false, msg: err})
     }
-    return res.status(200).send({success: true, msg:"updated successfully"})
+    return res.status(200).send({success: true, msg:"done updated successfully"})
 }
 
 exports.deleteTodo = (req, res) => {
@@ -129,20 +129,47 @@ exports.gettAllTodosforSingleUser = (req, res) => {
 }
 
 exports.getNumberofRegisteredUsersforTheDay = (req, res) => {
-   let todos =  Todo.find({ createdAt: { $gte: new Date().now } }, (err) => {
+   let todos =  User.find({ createdAt: { $gte: new Date().now } }, (err) => {
         return res.status(500).send({success: false, msg: err})
    })
     res.status(200).send({success: true, todos})
 }
 
 exports.getActiveUsersForTheDay = (req, res) => {
-    
+    let inaday=Todo.find({
+        updatedAt: {
+            $gte: new Date().now
+        }
+    }, (err) => {
+        if (err) {
+            res.status.send({success: false, msg: err})
+        }
+    });
+    res.status(200).send({success: true, inaday})
 }
 
 exports.getActiveUersForTheWeek = (req, res) => {
-    
+    let inaweek=Todo.find({
+        updatedAt: {
+            $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)
+        }
+    }, (err) => {
+        if (err) {
+            res.status.send({success: false, msg: err})
+        }
+    });
+    res.status(200).send({success: true, inaweek})
 }
 
 exports.getActiveUsersForTheMonth = (req, res) => {
-    
+    let inamonth=Todo.find({
+        updatedAt: {
+            $gte: new Date(new Date() - 30 * 60 * 60 * 24 * 1000)
+        }
+    }, (err) => {
+        if (err) {
+            res.status.send({success: false, msg: err})
+        }
+    });
+    res.status(200).send({success: true, inamonth})
 }
