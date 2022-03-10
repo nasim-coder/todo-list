@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
             phone:phone,
             password: bcrypt.hashSync(password, 8)
         });
-        user.save((err, user) => {
+        await user.save((err, user) => {
             if (err) {
                 return res.status(500).send({ success: false, message: err })
             
@@ -50,7 +50,7 @@ exports.AddTodo = async (req, res) => {
         status: status,
         category: category,
     });
-    todo.save((err, todo) => {
+    await todo.save((err, todo) => {
         if (err) {
             return res.status(500).send({success: false, msg: err})
         } else {
@@ -63,7 +63,7 @@ exports.updateTitle = async (req, res) => {
     let title = req.body.title;
     let todoid = mongoose.Types.ObjectId(req.params.todoid);
     try {
-        Todo.updateOne({ _id: todoid }, { title: title });
+        await Todo.updateOne({ _id: todoid }, { title: title });
     }
     catch (err) {
         return res.status(500).send({ success: false, msg: err });
@@ -75,7 +75,7 @@ exports.updateTitle = async (req, res) => {
 exports.doneTodo = async (req, res) => {
     let todoid = mongoose.Types.ObjectId(req.params.todoid);
     try {
-        Todo.updateMany({ _id: todoid }, {$set:{ status: true, updatedAt: new Date().now }})
+        await Todo.updateMany({ _id: todoid }, {$set:{ status: true, updatedAt: new Date().now }})
     } catch (err) {
         return res.status(500).send({success: false, msg: err})
     }
@@ -85,7 +85,7 @@ exports.doneTodo = async (req, res) => {
 exports.deleteTodo = async (req, res) => {
     let todoid = mongoose.Types.ObjectId(req.params.todoid);
     try {
-        Todo.deleteOne({_id: todoid})
+        await Todo.deleteOne({_id: todoid})
     } catch (err) {
         return res.status(500).send({success: false,msg: err})
     }
@@ -97,7 +97,7 @@ exports.findAllTodos = async (req, res) => {
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
 
-    let alltodo = Todo.find({}, (err) => {
+    let alltodo = await Todo.find({}, (err) => {
         if (err) {
             return res.status(500).send({success: false, msg: err})
         }
@@ -110,7 +110,7 @@ exports.findAllTodosByCategory = async (req, res) => {
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
     let category = req.body.category;
-    let alltodoBycategory = Todo.find({ category: category }, (err) => {
+    let alltodoBycategory = await Todo.find({ category: category }, (err) => {
         if (err) {
             return res.status(500).send({success: false, msg: err})
         }
@@ -122,7 +122,7 @@ exports.sortbyCreatedAt = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
-    let sortedTodobyCreatedAt = Todo.find({}).sort({ createdAt: 1 }, (err) => {
+    let sortedTodobyCreatedAt = await Todo.find({}).sort({ createdAt: 1 }, (err) => {
         if (err) {
             return res.status(500).send({success: false, msg: err})
         }
@@ -135,7 +135,7 @@ exports.gettAllTodosforSingleUser = async (req, res) => {
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
     let userid = mongoose.Types.ObjectId(req.params.userid)
-    let singleUserTodos = Todo.find({ user: userid }, (err) => {
+    let singleUserTodos = await Todo.find({ user: userid }, (err) => {
         return res.status(500).send({success: false, msg: err.message})
     }).limit(perPageDocument).skip(perPageDocument*pageNu)
     return res.status(200).send({success: true, singleUserTodos})
@@ -145,7 +145,7 @@ exports.getNumberofRegisteredUsersforTheDay = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
-    let todos =  User.find({ createdAt: { $gte: new Date().now } }, (err) => {
+    let todos =  await User.find({ createdAt: { $gte: new Date().now } }, (err) => {
         return res.status(500).send({success: false, msg: err})
    }).limit(perPageDocument).skip(perPageDocument*pageNu)
     res.status(200).send({success: true, todos})
@@ -155,7 +155,7 @@ exports.getActiveUsersForTheDay = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
-    let inaday=Todo.find({
+    let inaday= await Todo.find({
         updatedAt: {
             $gte: new Date().now
         }
@@ -171,7 +171,7 @@ exports.getActiveUersForTheWeek = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
-    let inaweek=Todo.find({
+    let inaweek = await Todo.find({
         updatedAt: {
             $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)
         }
@@ -187,7 +187,7 @@ exports.getActiveUsersForTheMonth = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
-    let inamonth=Todo.find({
+    let inamonth = await Todo.find({
         updatedAt: {
             $gte: new Date(new Date() - 30 * 60 * 60 * 24 * 1000)
         }
@@ -195,6 +195,6 @@ exports.getActiveUsersForTheMonth = async (req, res) => {
         if (err) {
             res.status.send({success: false, msg: err})
         }
-    }).limit(perPageDocument).skip(perPageDocument*pageNu);;
+    }).limit(perPageDocument).skip(perPageDocument*pageNu);
     res.status(200).send({success: true, inamonth})
 }
