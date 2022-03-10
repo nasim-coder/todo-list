@@ -16,13 +16,20 @@ todoRouter.put('/done', controller.doneTodo);
 //delete any todo irrespective of done or not
 todoRouter.delete('/delete/todo', controller.deleteTodo);
 //get all todos only admin
-todoRouter.get('/getalltodo/:perPageDocument/:pageNumber', controller.findAllTodos);
-todoRouter.get('/getbycategory/:perPageDocument/:pageNumber', controller.findAllTodosByCategory);
-todoRouter.get('/getallsortedtodo/:perPageDocument/:pageNumber', controller.sortbyCreatedAt);
+todoRouter.get('/getalltodo/:perPageDocument/:pageNumber', isAdmin, controller.findAllTodos);
+//get all todos by category only admin
+todoRouter.get('/getbycategory/:perPageDocument/:pageNumber', isAdmin, controller.findAllTodosByCategory);
+//get all todos sorted by the date when it was created only admin
+todoRouter.get('/getallsortedtodo/:perPageDocument/:pageNumber', isAdmin, controller.sortbyCreatedAt);
+//get all todos foa single user, admin and user can access it.
 todoRouter.get('/getalltodoforauser/:perPageDocument/:pageNumber', controller.gettAllTodosforSingleUser);
-todoRouter.get('/todayregisteredusers/:perPageDocument/:pageNumber', controller.getNumberofRegisteredUsersforTheDay);
-todoRouter.get('/activetoday/:perPageDocument/:pageNumber', controller.getActiveUsersForTheDay);
-todoRouter.get('/activelastweek/:perPageDocument/:pageNumber', controller.getActiveUersForTheWeek);
-todoRouter.get('/activelast30days/:perPageDocument/:pageNumber', controller.getActiveUsersForTheMonth);
+//getting all the users who are registedred today, admin
+todoRouter.get('/todayregisteredusers/:perPageDocument/:pageNumber', isAdmin, controller.getNumberofRegisteredUsersforTheDay);
+//getting all the users who is active today
+todoRouter.get('/activetoday/:perPageDocument/:pageNumber',isAdmin, controller.getActiveUsersForTheDay);
+//get all the active user last week
+todoRouter.get('/activelastweek/:perPageDocument/:pageNumber',isAdmin, controller.getActiveUersForTheWeek);
+//get active users for last month
+todoRouter.get('/activelast30days/:perPageDocument/:pageNumber',isAdmin, controller.getActiveUsersForTheMonth);
 
 module.exports = todoRouter;
