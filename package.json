@@ -24,6 +24,7 @@
   "homepage": "https://github.com/NakRex/todo-list#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.4"
   }
 }
