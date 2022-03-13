@@ -1,17 +1,19 @@
 const User = require('../model/user');
 const Todo = require('../model/todo');
 const { default: mongoose } = require('mongoose');
-
+const bcrypt = require('bcryptjs');
 
 exports.register = async (req, res) => {
-    const { name, email,phone, password } = req.body;
+    const { name, email,phone, password, userType} = req.body;
     let isAlreadyexist = await User.findOne({ email });
     if (!isAlreadyexist) {
+        let salt = bcrypt.genSaltSync(10)
         let user = new User({
             name: name,
             email: email,
             phone:phone,
-            password: bcrypt.hashSync(password, 8)
+            password: await bcrypt.hash(password, salt),
+            role: userType
         });
         await user.save((err, user) => {
             if (err) {
