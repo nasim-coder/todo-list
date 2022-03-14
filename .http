@@ -18,3 +18,15 @@ content-type: application/json
     "email":"khannasimahmad@gmail.com",
     "password":"abcdefghi"
 }
+
+###
+POST http://localhost:4000/todo/create/todo/622d8ca201c85fc24eaaf55e
+Content-Type: application/json
+
+{
+        "userid": "622d8ca201c85fc24eaaf55e",
+        "title": "Practice",
+        "status": false,
+        "category": "hobby",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMmQ4Y2EyMDFjODVmYzI0ZWFhZjU1ZSIsIm5hbWUiOiJuYXNpbSIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZ21haWwuY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkdHA5REVWLk5EWTNBUE84dlRPWG9PdWpjTE1UMm9BaTFTdVRtRlJCWlN3cHZwNlB1V2RhRGkiLCJyb2xlIjoidXNlciIsIl9fdiI6MH0sImlhdCI6MTY0NzI4Mzk3MSwiZXhwIjoxNjQ3MjkxMTcxfQ.pNcZrgZxGHHKfqVaC_1wlLdM0TwhWEkz8FCv86RkoGE"
+}

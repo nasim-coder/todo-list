@@ -9,7 +9,7 @@ todoRouter.post('/signup', controller.register);
 //admin and user register
 todoRouter.post('/login', controller.login);
 //admin and user can add todo
-todoRouter.post('create/todo',verifyToken, controller.AddTodo);
+todoRouter.post('/create/todo/:userid',verifyToken, controller.AddTodo);
 //user and admin can change the title
 todoRouter.put('/changetitle',verifyToken, controller.updateTitle);
 //cange status of todo to done 

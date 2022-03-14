@@ -39,7 +39,8 @@ exports.login = async (req, res) => {
     if (user && (isPasswordCorrect)) {
         const token = jwt.sign({ user }, jwtconfig.secret, { "expiresIn": "2h" });
         user.token = token;
-        res.status(200).send({success: true, user})
+        console.log(user.token);
+        res.status(200).send({success: true, user, token: user.token})
     } else {
         res.status(400).send({success: false, msg: "invalid credential"})
     }
