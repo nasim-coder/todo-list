@@ -1,6 +1,20 @@
-POST http://localhost:4000/toodo/signup 
+POST http://localhost:4000/todo/signup/
 content-type: application/json
 
 {
-    "name":"nasim"
+    "name": "nasim",
+    "email": "khannasimahmad@gmail.com",
+    "phone":"8052665978",
+    "password": "abcdefghi",
+    "userType": "user"
+}
+
+###
+
+POST http://localhost:4000/todo/login/
+content-type: application/json
+
+{
+    "email":"khannasimahmad@gmail.com",
+    "password":"abcdefghi"
 }

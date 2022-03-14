@@ -2,6 +2,8 @@ const User = require('../model/user');
 const Todo = require('../model/todo');
 const { default: mongoose } = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
+const jwtconfig = require('../config/jwtconfig')
 
 exports.register = async (req, res) => {
     const { name, email,phone, password, userType} = req.body;
@@ -37,9 +39,9 @@ exports.login = async (req, res) => {
     if (user && (isPasswordCorrect)) {
         const token = jwt.sign({ user }, jwtconfig.secret, { "expiresIn": "2h" });
         user.token = token;
-        res.status(200).json(user)
+        res.status(200).send({success: true, user})
     } else {
-        res.status(400).send({msg: "invalid credential"})
+        res.status(400).send({success: false, msg: "invalid credential"})
     }
 }
 
