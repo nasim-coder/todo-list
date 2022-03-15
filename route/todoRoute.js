@@ -15,7 +15,7 @@ todoRouter.put('/changetitle/:todoid',verifyToken, controller.updateTitle);
 //cange status of todo to done 
 todoRouter.put('/done/:todoid/',verifyToken, controller.doneTodo);
 //delete any todo irrespective of done or not
-todoRouter.delete('/delete/todo',verifyToken, controller.deleteTodo);
+todoRouter.delete('/delete/todo/:todoid/',verifyToken, controller.deleteTodo);
 //get all todos only admin
 todoRouter.get('/getalltodo/:perPageDocument/:pageNumber',verifyToken, isAdmin, controller.findAllTodos);
 //get all todos by category only admin
