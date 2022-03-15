@@ -128,11 +128,13 @@ exports.sortbyCreatedAt = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
-    let sortedTodobyCreatedAt = await Todo.find({}).sort({ createdAt: 1 }, (err) => {
-        if (err) {
-            return res.status(500).send({success: false, msg: err})
-        }
-    }).limit(perPageDocument).skip(perPageDocument*pageNu)
+    let sortedTodobyCreatedAt;
+    try {
+         sortedTodobyCreatedAt = await Todo.find({}).sort({ createdAt: 1 }).clone().limit(perPageDocument).skip(perPageDocument * pageNu);
+    } catch (err) {
+        return res.status(500).send({success: false, msg: err})
+    }
+    
     return res.status(200).send({success: true, sortedTodobyCreatedAt})
 }
 
