@@ -1,3 +1,4 @@
+###register
 POST http://localhost:4000/todo/signup/
 content-type: application/json
 
@@ -9,8 +10,7 @@ content-type: application/json
     "userType": "user"
 }
 
-###
-
+### login
 POST http://localhost:4000/todo/login/
 content-type: application/json
 
@@ -19,7 +19,7 @@ content-type: application/json
     "password":"abcdefghi"
 }
 
-###
+### create todo
 POST http://localhost:4000/todo/create/todo/622d8ca201c85fc24eaaf55e
 Content-Type: application/json
 
@@ -31,7 +31,7 @@ Content-Type: application/json
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMmQ4Y2EyMDFjODVmYzI0ZWFhZjU1ZSIsIm5hbWUiOiJuYXNpbSIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZ21haWwuY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkdHA5REVWLk5EWTNBUE84dlRPWG9PdWpjTE1UMm9BaTFTdVRtRlJCWlN3cHZwNlB1V2RhRGkiLCJyb2xlIjoidXNlciIsIl9fdiI6MH0sImlhdCI6MTY0NzMxOTQ4OSwiZXhwIjoxNjQ3MzI2Njg5fQ.Garl72fTxjGaYfjJNB-FHlZVm81H-dNADt0zntGm6Mc"
 }
 
-###
+### change title of todo taking document id (todoid)as prams
 PUT http://localhost:4000/todo/changetitle/623018cf3d277f978f9939df/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMmQ4Y2EyMDFjODVmYzI0ZWFhZjU1ZSIsIm5hbWUiOiJuYXNpbSIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZ21haWwuY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkdHA5REVWLk5EWTNBUE84dlRPWG9PdWpjTE1UMm9BaTFTdVRtRlJCWlN3cHZwNlB1V2RhRGkiLCJyb2xlIjoidXNlciIsIl9fdiI6MH0sImlhdCI6MTY0NzMxOTQ4OSwiZXhwIjoxNjQ3MzI2Njg5fQ.Garl72fTxjGaYfjJNB-FHlZVm81H-dNADt0zntGm6Mc
 Content-Type: application/json
 
@@ -39,8 +39,10 @@ Content-Type: application/json
     "title":"learn programming"
 }
 
-###
+### mark todo as done send todoid as param
 PUT http://localhost:4000/todo/done/623019ec46bc788d3668b565/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMmQ4Y2EyMDFjODVmYzI0ZWFhZjU1ZSIsIm5hbWUiOiJuYXNpbSIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZ21haWwuY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkdHA5REVWLk5EWTNBUE84dlRPWG9PdWpjTE1UMm9BaTFTdVRtRlJCWlN3cHZwNlB1V2RhRGkiLCJyb2xlIjoidXNlciIsIl9fdiI6MH0sImlhdCI6MTY0NzMxOTQ4OSwiZXhwIjoxNjQ3MzI2Njg5fQ.Garl72fTxjGaYfjJNB-FHlZVm81H-dNADt0zntGm6Mc
 
-###
+### delete todo, send todoid as param
 DELETE http://localhost:4000/todo/delete/todo/623019ec46bc788d3668b565/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMmQ4Y2EyMDFjODVmYzI0ZWFhZjU1ZSIsIm5hbWUiOiJuYXNpbSIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZ21haWwuY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkdHA5REVWLk5EWTNBUE84dlRPWG9PdWpjTE1UMm9BaTFTdVRtRlJCWlN3cHZwNlB1V2RhRGkiLCJyb2xlIjoidXNlciIsIl9fdiI6MH0sImlhdCI6MTY0NzMxOTQ4OSwiZXhwIjoxNjQ3MzI2Njg5fQ.Garl72fTxjGaYfjJNB-FHlZVm81H-dNADt0zntGm6Mc
+
+###
