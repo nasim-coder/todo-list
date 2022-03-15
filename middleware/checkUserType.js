@@ -1,9 +1,10 @@
-let isAdmin = (req, res, next)=>{
+let isAdmin = (req, res, next) => {
+    
     if (req.user.role == "admin") {
         next()
     }
     else {
-        return res.status(403).send({success: false, msg:"only admin can access ths route"})
+        return res.status(403).send({success: false, msg:"only admin can access this route"})
     }
 }
 

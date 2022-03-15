@@ -3,11 +3,11 @@ POST http://localhost:4000/todo/signup/
 content-type: application/json
 
 {
-    "name": "nasim",
-    "email": "khannasimahmad@gmail.com",
+    "name": "nasim ahmad",
+    "email": "khannasimahmad@facebook.com",
     "phone":"8052665978",
     "password": "abcdefghi",
-    "userType": "user"
+    "userType": "admin"
 }
 
 ### login
@@ -15,7 +15,7 @@ POST http://localhost:4000/todo/login/
 content-type: application/json
 
 {
-    "email":"khannasimahmad@gmail.com",
+    "email":"khannasimahmad@facebook.com",
     "password":"abcdefghi"
 }
 
@@ -45,4 +45,6 @@ PUT http://localhost:4000/todo/done/623019ec46bc788d3668b565/?token=eyJhbGciOiJI
 ### delete todo, send todoid as param
 DELETE http://localhost:4000/todo/delete/todo/623019ec46bc788d3668b565/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMmQ4Y2EyMDFjODVmYzI0ZWFhZjU1ZSIsIm5hbWUiOiJuYXNpbSIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZ21haWwuY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkdHA5REVWLk5EWTNBUE84dlRPWG9PdWpjTE1UMm9BaTFTdVRtRlJCWlN3cHZwNlB1V2RhRGkiLCJyb2xlIjoidXNlciIsIl9fdiI6MH0sImlhdCI6MTY0NzMxOTQ4OSwiZXhwIjoxNjQ3MzI2Njg5fQ.Garl72fTxjGaYfjJNB-FHlZVm81H-dNADt0zntGm6Mc
 
-###
+### to gett all todo accessible by admin, first param is document per page,
+### second param is page number.
+GET http://localhost:4000/todo/getalltodo/2/1/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMzA0N2I5MWQ4MTE0ZTQxMjA0Yzg2NiIsIm5hbWUiOiJuYXNpbSBhaG1hZCIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZmFjZWJvb2suY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkWmlpc2tFdE0wbDJpTDJFZEZUQjJudVJRaVdzdUQvWFRESk5mZS5QL09EWXVSYVNlQ05mSWEiLCJyb2xlIjoiYWRtaW4iLCJfX3YiOjB9LCJpYXQiOjE2NDczMzEyODYsImV4cCI6MTY0NzMzODQ4Nn0.yKZyXIlXOqtWZT4Y3L5hMAKsHAws2gAUWnlP5Sfj3vA
