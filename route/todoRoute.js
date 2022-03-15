@@ -11,7 +11,7 @@ todoRouter.post('/login', controller.login);
 //admin and user can add todo
 todoRouter.post('/create/todo/:userid',verifyToken, controller.AddTodo);
 //user and admin can change the title
-todoRouter.put('/changetitle',verifyToken, controller.updateTitle);
+todoRouter.put('/changetitle/:todoid',verifyToken, controller.updateTitle);
 //cange status of todo to done 
 todoRouter.put('/done/:todoid/',verifyToken, controller.doneTodo);
 //delete any todo irrespective of done or not
