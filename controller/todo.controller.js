@@ -120,7 +120,7 @@ exports.findAllTodosByCategory = async (req, res) => {
         if (err) {
             return res.status(500).send({success: false, msg: err})
         }
-    }).limit(perPageDocument).skip(perPageDocument*pageNu)
+    }).clone().limit(perPageDocument).skip(perPageDocument*pageNu)
     return res.status(200).send({ success: true, alltodoBycategory });
 }
 

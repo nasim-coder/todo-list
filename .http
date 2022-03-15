@@ -25,10 +25,10 @@ Content-Type: application/json
 
 {
         "userid": "622d8ca201c85fc24eaaf55e",
-        "title": "test2",
+        "title": "test6",
         "status": false,
-        "category": "hobby",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMmQ4Y2EyMDFjODVmYzI0ZWFhZjU1ZSIsIm5hbWUiOiJuYXNpbSIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZ21haWwuY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkdHA5REVWLk5EWTNBUE84dlRPWG9PdWpjTE1UMm9BaTFTdVRtRlJCWlN3cHZwNlB1V2RhRGkiLCJyb2xlIjoidXNlciIsIl9fdiI6MH0sImlhdCI6MTY0NzMxOTQ4OSwiZXhwIjoxNjQ3MzI2Njg5fQ.Garl72fTxjGaYfjJNB-FHlZVm81H-dNADt0zntGm6Mc"
+        "category": "task",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMzA0N2I5MWQ4MTE0ZTQxMjA0Yzg2NiIsIm5hbWUiOiJuYXNpbSBhaG1hZCIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZmFjZWJvb2suY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkWmlpc2tFdE0wbDJpTDJFZEZUQjJudVJRaVdzdUQvWFRESk5mZS5QL09EWXVSYVNlQ05mSWEiLCJyb2xlIjoiYWRtaW4iLCJfX3YiOjB9LCJpYXQiOjE2NDczNDI4NTcsImV4cCI6MTY0NzM1MDA1N30.YNyrqXbajrK_xCrKphZ9mlDskCtfpzD1aZwlHWHVtDw"
 }
 
 ### change title of todo taking document id (todoid)as prams
@@ -48,3 +48,11 @@ DELETE http://localhost:4000/todo/delete/todo/623019ec46bc788d3668b565/?token=ey
 ### to gett all todo accessible by admin, first param is document per page,
 ### second param is page number.
 GET http://localhost:4000/todo/getalltodo/2/1/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMzA0N2I5MWQ4MTE0ZTQxMjA0Yzg2NiIsIm5hbWUiOiJuYXNpbSBhaG1hZCIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZmFjZWJvb2suY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkWmlpc2tFdE0wbDJpTDJFZEZUQjJudVJRaVdzdUQvWFRESk5mZS5QL09EWXVSYVNlQ05mSWEiLCJyb2xlIjoiYWRtaW4iLCJfX3YiOjB9LCJpYXQiOjE2NDczMzEyODYsImV4cCI6MTY0NzMzODQ4Nn0.yKZyXIlXOqtWZT4Y3L5hMAKsHAws2gAUWnlP5Sfj3vA
+
+### get all todos by category hobby, task, work
+GET http://localhost:4000/todo/getbycategory/0/1/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMzA0N2I5MWQ4MTE0ZTQxMjA0Yzg2NiIsIm5hbWUiOiJuYXNpbSBhaG1hZCIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZmFjZWJvb2suY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkWmlpc2tFdE0wbDJpTDJFZEZUQjJudVJRaVdzdUQvWFRESk5mZS5QL09EWXVSYVNlQ05mSWEiLCJyb2xlIjoiYWRtaW4iLCJfX3YiOjB9LCJpYXQiOjE2NDczNDI4NTcsImV4cCI6MTY0NzM1MDA1N30.YNyrqXbajrK_xCrKphZ9mlDskCtfpzD1aZwlHWHVtDw
+Content-Type: application/json
+
+{
+    "category": "work"
+}
