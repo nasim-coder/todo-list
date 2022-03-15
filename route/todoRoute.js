@@ -11,7 +11,7 @@ todoRouter.post('/signup', controller.register);
 todoRouter.post('/login', controller.login);
 
 //admin and user can add todo
-todoRouter.post('/create/todo/:userid', verifyToken, controller.AddTodo);
+todoRouter.post('/create/todo/', verifyToken, controller.AddTodo);
 
 //user and admin can change the title
 todoRouter.put('/changetitle/:todoid', verifyToken, controller.updateTitle);
@@ -32,7 +32,7 @@ todoRouter.get('/getbycategory/:perPageDocument/:pageNumber', verifyToken, isAdm
 todoRouter.get('/getallsortedtodo/:perPageDocument/:pageNumber', verifyToken, isAdmin, controller.sortbyCreatedAt);
 
 //get all todos foa single user, admin and user can access it.
-todoRouter.get('/getalltodoforauser/:perPageDocument/:pageNumber', verifyToken, controller.gettAllTodosforSingleUser);
+todoRouter.get('/getalltodoforauser/:perPageDocument/:pageNumber/', verifyToken, controller.gettAllTodosforSingleUser);
 
 //getting all the users who are registedred today, admin
 todoRouter.get('/todayregisteredusers/:perPageDocument/:pageNumber', verifyToken, isAdmin, controller.getNumberofRegisteredUsersforTheDay);

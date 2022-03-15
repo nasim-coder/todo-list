@@ -48,7 +48,7 @@ exports.login = async (req, res) => {
 
 exports.AddTodo = async (req, res) => {
     const {title, status, category } = req.body;
-    let uid = req.params.userid;
+    let uid = req.user._id;
     let todo = new Todo({
         user: uid,
         title: title,
@@ -142,10 +142,15 @@ exports.gettAllTodosforSingleUser = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
-    let userid = mongoose.Types.ObjectId(req.params.userid)
-    let singleUserTodos = await Todo.find({ user: userid }, (err) => {
-        return res.status(500).send({success: false, msg: err.message})
-    }).limit(perPageDocument).skip(perPageDocument*pageNu)
+    let userid = mongoose.Types.ObjectId(req.user._id)
+    console.log(userid);
+    let singleUserTodos;
+    try {
+        singleUserTodos = await Todo.find({ user: userid }).clone().limit(perPageDocument).skip(perPageDocument * pageNu);
+    } catch (err) {
+        return res.status(500).send({ success: false, msg: err })
+    }
+    
     return res.status(200).send({success: true, singleUserTodos})
 }
 
