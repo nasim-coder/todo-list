@@ -158,10 +158,14 @@ exports.getNumberofRegisteredUsersforTheDay = async (req, res) => {
     let perPageDocument = req.params.perPageDocument;
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
-    let todos =  await User.find({ createdAt: { $gte: new Date().now } }, (err) => {
-        return res.status(500).send({success: false, msg: err})
-   }).limit(perPageDocument).skip(perPageDocument*pageNu)
-    res.status(200).send({success: true, todos})
+    try {
+        let users = await User.find({ createdAt: { $gte: new Date().now } })
+        .clone().limit(perPageDocument).skip(perPageDocument * pageNu);
+        return res.status(200).send({ success: true, users });
+    } catch (err) {
+        return res.status(500).send({ success: false, msg: err });
+    }
+   
 }
 
 exports.getActiveUsersForTheDay = async (req, res) => {

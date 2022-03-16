@@ -31,7 +31,7 @@ todoRouter.get('/getbycategory/:perPageDocument/:pageNumber', verifyToken, isAdm
 //get all todos sorted by the date when it was created only admin
 todoRouter.get('/getallsortedtodo/:perPageDocument/:pageNumber', verifyToken, isAdmin, controller.sortbyCreatedAt);
 
-//get all todos foa single user, admin and user can access it.
+//get all todos for a single user, admin and user can access it.
 todoRouter.get('/getalltodoforauser/:perPageDocument/:pageNumber/', verifyToken, controller.gettAllTodosforSingleUser);
 
 //getting all the users who are registedred today, admin

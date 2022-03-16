@@ -3,11 +3,11 @@ POST http://localhost:4000/todo/signup/
 content-type: application/json
 
 {
-    "name": "nasim ahmad",
-    "email": "khannasimahmad@facebook.com",
+    "name": "nasim ahmad khan",
+    "email": "khannasimahmad@outlook.com",
     "phone":"8052665978",
     "password": "abcdefghi",
-    "userType": "admin"
+    "userType": "user"
 }
 
 ### login
@@ -15,7 +15,7 @@ POST http://localhost:4000/todo/login/
 content-type: application/json
 
 {
-    "email":"khannasimahmad@facebook.com",
+    "email":"khannasimahmad@google.com",
     "password":"abcdefghi"
 }
 
@@ -61,3 +61,6 @@ GET http://localhost:4000/todo/getallsortedtodo/0/1/?token=eyJhbGciOiJIUzI1NiIsI
 
 ### get all todo for a single user, access: user.
 GET http://localhost:4000/todo/getalltodoforauser/0/1/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMzA0N2I5MWQ4MTE0ZTQxMjA0Yzg2NiIsIm5hbWUiOiJuYXNpbSBhaG1hZCIsImVtYWlsIjoia2hhbm5hc2ltYWhtYWRAZmFjZWJvb2suY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkWmlpc2tFdE0wbDJpTDJFZEZUQjJudVJRaVdzdUQvWFRESk5mZS5QL09EWXVSYVNlQ05mSWEiLCJyb2xlIjoiYWRtaW4iLCJfX3YiOjB9LCJpYXQiOjE2NDczNDI4NTcsImV4cCI6MTY0NzM1MDA1N30.YNyrqXbajrK_xCrKphZ9mlDskCtfpzD1aZwlHWHVtDw
+
+### get number of registered users in a day, 
+GET http://localhost:4000/todo/todayregisteredusers/0/1/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMzEzODdlMjkyZWE0MzNlNWI4MWI4MCIsIm5hbWUiOiJuYXNpbSBhaG1hZCBraGFuIiwiZW1haWwiOiJraGFubmFzaW1haG1hZEBnb29nbGUuY29tIiwicGhvbmUiOiI4MDUyNjY1OTc4IiwicGFzc3dvcmQiOiIkMmEkMTAkZTN5cERreTA0THAzZUlsU0kxZzJULkxCL1U3S0pDcExNc1VreGNpVFBiSEtHcHFMV0lDZ2EiLCJyb2xlIjoiYWRtaW4iLCJfX3YiOjB9LCJpYXQiOjE2NDczOTI5NTgsImV4cCI6MTY0NzQwMDE1OH0.JFOEOZw212EjauJNGChD6h23fXOvlY1tNwnvoJAYfgM
