@@ -159,9 +159,9 @@ exports.getNumberofRegisteredUsersforTheDay = async (req, res) => {
     let pageNumber = req.params.pageNumber;
     let pageNu = Math.max(0, pageNumber)
     try {
-        let users = await User.find({ createdAt: { $gte: new Date().now } })
+        let users = await User.find({ createdAt: { $gte: new Date()} })
         .clone().limit(perPageDocument).skip(perPageDocument * pageNu);
-        return res.status(200).send({ success: true, users });
+        return res.status(200).send({ success: true, users }).catch((err)=>res.send({msg:err}));
     } catch (err) {
         return res.status(500).send({ success: false, msg: err });
     }
