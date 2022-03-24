@@ -11,8 +11,8 @@ field to track whether task is complete or not
 created at  
 updated at  
 category (work, hobby, task)  
-Prefered Technologies  
-Environment	Framework  
+Prefered Technologies  JavaScript
+Environment	Framework  Nodejs
 Backend APIs	Express Js  
 Database	MongoDB  
 ORM/ODM	Mongoose  
